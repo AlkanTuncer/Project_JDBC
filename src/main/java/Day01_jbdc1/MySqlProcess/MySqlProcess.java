@@ -37,11 +37,12 @@ public class MySqlProcess extends MYSqlProcessBase{
 
     @Test(description = "Field headers")
     public void testSql03() throws SQLException {
-        String sql = "SELECT gender, AVG(age) FROM personel GROUP BY gender";
+        String sql = "SELECT gender, AVG(age) AS count FROM personel GROUP BY gender";
 
         resultSet = statement.executeQuery(sql);
 
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+        System.out.printf("%-15s %s \n", resultSetMetaData.getColumnName(1),resultSetMetaData.getColumnName(2));
 
         while (resultSet.next())
             System.out.printf("%-15s %5.2f \n",resultSet.getString(1),resultSet.getDouble(2));
