@@ -65,12 +65,23 @@ public class MySqlProcess extends MYSqlProcessBase{
 
         for (int i = 1; i <=columnNum ; i++) {
             int size = rsmd.getColumnDisplaySize(i) > 30 ? 30 : rsmd.getColumnDisplaySize(i);
+            size = Math.max(size,rsmd.getColumnName(i).length());
             format += "%-" + size + "s ";
             headers[i-1] = rsmd.getColumnName(i);
         }
         format += "\n";
 
         System.out.printf(format,headers);
+
+        String[] values = new String[columnNum];
+        String str = "";
+        while (resultSet.next()){
+            for (int i = 1; i <= columnNum ; i++) {
+                int size = rsmd.getColumnDisplaySize(i) > 30 ? 30 : rsmd.getColumnDisplaySize(i);
+                values[i-1] = resultSet.getString(i);
+            }
+            System.out.printf(format,values);
+        }
 
     }
 
