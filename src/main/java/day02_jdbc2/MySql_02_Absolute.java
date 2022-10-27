@@ -65,4 +65,14 @@ public class MySql_02_Absolute {
         resultSet.relative(-4);
         System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
     }
+
+    @Test (description = "resultSet.first and last" , dependsOnMethods = "getResultSet")
+    public void test04() throws SQLException {
+        resultSet.first();
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+
+        resultSet.last();
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+    }
+
 }
