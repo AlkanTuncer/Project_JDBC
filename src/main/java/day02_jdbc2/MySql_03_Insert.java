@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.sql.*;
 
-public class MySql_03_InsertDeleteUpdate {
+public class MySql_03_Insert {
 
     Connection connection;
     Statement statement;
