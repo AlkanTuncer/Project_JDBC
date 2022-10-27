@@ -47,10 +47,15 @@ public class MySql_05_InsertDeleteUpdate {
         }
     }
 
-    @Test(dataProvider = "getData")
+    @Test(dataProvider = "getDataForUpdate")
     public void updateData(Object[] array) throws SQLException {
 
-        String sql = "UPDATE INTO kartal VALUES('"+array[0]+"', '"+array[1]+"', "+array[2]+" , '"+array[3]+"');";
+        String sql ="UPDATE kartal " +
+                "SET adi = '"+ array[1] + "', " +
+                "soyadi = '"+ array[2] + "', " +
+                "yas = "+ array[3] + ", " +
+                "sehir = '"+ array[4] + "' " +
+                "WHERE adi = '"+ array[0] + "';";
 
         if(statement.executeUpdate(sql)<1){
             throw new RuntimeException("Kayıt eklenemedi.\n"+sql);
@@ -82,6 +87,17 @@ public class MySql_05_InsertDeleteUpdate {
                 {"A8","A8",1992,"X8"},
                 {"A9","A9",34,"X9"},
                 {"A10","A10",1012,"X10"}
+        };
+    }
+
+    @DataProvider
+    public Object[][] getDataForUpdate(){
+        return new Object[][]{
+                {"A1","AA1","A11",3,"X111"},
+                {"A2","AA2","A22",7,"X222"},
+                {"A3","AA3","A33",17,"X333"},
+                {"A4","AA4","A44",23,"X444"},
+                {"A5","AA5","A55",53,"X555"},
         };
     }
 }
