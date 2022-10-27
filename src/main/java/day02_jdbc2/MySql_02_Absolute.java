@@ -29,12 +29,15 @@ public class MySql_02_Absolute {
         connection.close();
     }
 
-
-    @Test (description = "resultSet.absolute")
-    public void test01() throws SQLException {
+    @Test
+    public void getResultSet() throws SQLException {
         String sql = "SELECT * FROM meslekler1;";
-
         resultSet = statement.executeQuery(sql);
+    }
+
+
+    @Test (description = "resultSet.absolute" , dependsOnMethods = "getResultSet")
+    public void test01() throws SQLException {
         resultSet.next();
         System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
 
@@ -42,4 +45,12 @@ public class MySql_02_Absolute {
         System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
     }
 
+    @Test (description = "resultSet.previous" , dependsOnMethods = "getResultSet")
+    public void test02() throws SQLException {
+        resultSet.absolute(10);
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+
+        resultSet.previous();
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+    }
 }
