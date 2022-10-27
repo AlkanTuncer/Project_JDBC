@@ -53,4 +53,16 @@ public class MySql_02_Absolute {
         resultSet.previous();
         System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
     }
+
+    @Test (description = "resultSet.relative" , dependsOnMethods = "getResultSet")
+    public void test03() throws SQLException {
+        resultSet.absolute(10);
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+
+        resultSet.relative(2);
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+
+        resultSet.relative(-4);
+        System.out.println(resultSet.getString(1) + " , " + resultSet.getString(2) + " , " + resultSet.getString(3));
+    }
 }
