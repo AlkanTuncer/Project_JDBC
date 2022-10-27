@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.sql.*;
 
-public class MySql_02_Absolute {
+public class MySql_02_MovementOnResultSet {
 
     Connection connection;
     Statement statement;
