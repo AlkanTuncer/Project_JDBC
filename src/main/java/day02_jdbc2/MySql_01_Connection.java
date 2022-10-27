@@ -21,24 +21,24 @@ public class MySql_01_Connection {
 
         statement = connection.createStatement();
 
-        resultSet = statement.executeQuery("SELECT * FROM kartal;");
+        resultSet = statement.executeQuery("SELECT * FROM meslekler1 LIMIT 10;");
 
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int columnCount = resultSetMetaData.getColumnCount();
 
-        for (int i = 1; i <= columnCount; i++) {
+        for (int i = 1; i <= columnCount-2; i++) {  // Tabloda 6 kolon var ben 4 ünü alıyorum.
             System.out.printf("%-20s", resultSetMetaData.getColumnName(i));
         }
         System.out.println();
 
 
         while (resultSet.next()){
-            String adi = resultSet.getString("adi");
-            String soyadi = resultSet.getString("soyadi");
-            int yas = resultSet.getInt(3);
-            String sehir = resultSet.getString(4);
+            int id = resultSet.getInt(1);
+            String firstName = resultSet.getString("firstname");
+            String lastName = resultSet.getString("lastname");
+            String email = resultSet.getString(4);
 
-            System.out.printf("%-20s %-20s %-15d %-20s \n",adi,soyadi,yas,sehir);
+            System.out.printf("%-15d %-20s %-20s %-20s \n",id,firstName,lastName,email);
         }
 
         statement.close();
