@@ -27,18 +27,18 @@ public class MySql_01_Connection {
         int columnCount = resultSetMetaData.getColumnCount();
 
         for (int i = 1; i <= columnCount-2; i++) {  // Tabloda 6 kolon var ben 4 ünü alıyorum.
-            System.out.printf("%-20s", resultSetMetaData.getColumnName(i));
+            int size = resultSetMetaData.getColumnDisplaySize(i);
+            System.out.printf("%-"+size+"s", resultSetMetaData.getColumnName(i));
         }
         System.out.println();
 
 
         while (resultSet.next()){
-            int id = resultSet.getInt(1);
-            String firstName = resultSet.getString("firstname");
-            String lastName = resultSet.getString("lastname");
-            String email = resultSet.getString(4);
-
-            System.out.printf("%-15d %-20s %-20s %-20s \n",id,firstName,lastName,email);
+            for (int i = 1; i <=columnCount-2 ; i++) {
+                int size = resultSetMetaData.getColumnDisplaySize(i);
+                System.out.printf("%-"+size+"s",resultSet.getString(i));
+            }
+            System.out.println();
         }
 
         statement.close();
