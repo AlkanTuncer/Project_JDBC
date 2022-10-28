@@ -6,6 +6,11 @@ public class Sqlite_03_MysqlToSqlite {
 
     // gsuser'daki kartal'ı local dosyadaki kartal'a yazdır
 
+    /**
+     * MySql veritabanındaki kartal tablosundaki bütün verileri ile Sqlite veritabanına yazdırdık.
+     * @param args Java args
+     * @throws SQLException Hata durumunda fırlatılmıştır.
+     */
     public static void main(String[] args) throws SQLException {
 
         Connection connectionMysql;
