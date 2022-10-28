@@ -15,7 +15,12 @@ public class Sqlite_01_Connection {
         statement = connection.createStatement();
         statement.setQueryTimeout(30);
 
-        resultSet = statement.executeQuery("SELECT * FROM personel LIMIT 10");
+        String sql = "SELECT make, COUNT(*) FROM cars GROUP BY make";  // araba markalarının modelleri
+        String sql2 = "SELECT make, COUNT(*) FROM cars" +              // araba markalarını kac kişi kullanıyor
+                " INNER JOIN personel ON personel.car_id = cars.id" +
+                " GROUP BY make;";
+
+        resultSet = statement.executeQuery(sql2);
 
         while (resultSet.next()) {
             for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
